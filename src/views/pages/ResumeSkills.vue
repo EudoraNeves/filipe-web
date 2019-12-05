@@ -1,19 +1,19 @@
 <template>
   <div id>
-    resume skills
-    <div>{{msg}}</div>
-    <div>{{explain}}</div>
+    <ExperienceProgress />
+    <!-- <div>{{msg}}</div>
+    <div>{{explain}}</div> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+import ExperienceProgress from '@/components/ExperienceProgress.vue'
 
 export default {
   name: "",
   components: {
-    // HelloWorld
+    ExperienceProgress
   },
   props: {
     msg: Array,
@@ -31,4 +31,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 </style>

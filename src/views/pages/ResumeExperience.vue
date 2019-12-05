@@ -1,30 +1,25 @@
 <template>
-  <div id="">
-      resume experience
+  <div id="resume-experience">
+    <ExperienceTimeline />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+import ExperienceTimeline from '@/components/ExperienceTimeline.vue'
 
 export default {
   name: "",
   components: {
-    // HelloWorld
+    ExperienceTimeline
   },
   data() {
-    return {
-    };
+    return {};
   },
 
-  methods: {
+  methods: {},
 
-  },
-
-  mounted () {
-
-  }
+  mounted() {}
 };
 </script>
 

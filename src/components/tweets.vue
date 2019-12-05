@@ -25,8 +25,10 @@
         </div>
       </a>
       <div class="tweetsNews" v-for="(tweetsNews, n) in tweetsNewsList" :key="n">
-        <div class="tweetsNews-text">{{tweetsNews.text}}</div>
-        <div class="tweetsNews-time">{{tweetsNews.time}}</div>
+        <a :href="tweetsNews.url">
+          <div class="tweetsNews-text">{{tweetsNews.content}}</div>
+          <div class="tweetsNews-time">{{tweetsNews.date}}</div>
+        </a>
       </div>
     </div>
   </div>
@@ -39,25 +41,24 @@
 export default {
   name: "tweets",
   components: {
-    // HelloWorld
   },
   data() {
     return {
-      tweetsNewsList: [
-        {
-          text: "gagrgd dssf awefgaesr ergrth gdrh tdty jfy jytrs ersf",
-          time: "5 days ago"
-        },
-        {
-          text: "gagrg ddssf awef gaesrg ergrthgd rhtd tyjfyj ytrsersf",
-          time: "5 days ago"
-        },
-        {
-          text: "gagrg ddssfawef gaesrge rgrthgd rhtdty jfyjy trsersf",
-          time: "5 days ago"
-        }
-      ]
+      //https://github.com/ninabreznik/noauth-twitterfeed
+      twitterFeed: require("noauth-twitterfeed"),
+      tweetsNewsList: []
     };
+  },
+  methods: {
+    getTweets(length = 5) {
+      this.twitterFeed({ username: "redmistgg" }, (err, tweets) => {
+        this.tweetsNewsList = JSON.parse(JSON.stringify(tweets)).slice(0, length);
+        // console.log(this.tweetsNewsList)
+      });
+    }
+  },
+  mounted() {
+    this.getTweets(4); //If put in the created, when visit the a link and go back, it will show the default length amount, instead of the passed parameter 4
   }
 };
 </script>
@@ -69,6 +70,7 @@ export default {
   height: 315px;
   overflow: hidden;
   height: 100vh;
+  padding-left: 25px;
   // margin-right: 15px;
   // margin-top: 30px;
   .tweets-mark {
@@ -83,9 +85,9 @@ export default {
       color: #0086ec;
     }
   }
-    a {
-      text-decoration: none;
-      color: #646464;
+  a {
+    text-decoration: none;
+    color: #646464;
   }
   .paddingLeft7px {
     padding: 23px 15px 23px 7px;

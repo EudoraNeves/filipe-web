@@ -23,7 +23,7 @@
           />
         </div>
         <div class="formContact-item gn">
-          <label for="fn">*given name:&nbsp;&nbsp;</label>
+          <label for="gn">*given name:&nbsp;&nbsp;</label>
           <input
             type="text"
             name="gn"
@@ -95,7 +95,7 @@ export default {
 
   props: {
   },
-  data() {vistor
+  data() {
     return {
       contactForm: {
         fn: null,
@@ -239,7 +239,7 @@ export default {
     margin: 6% auto;
   }
   form {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     // border: 1px solid red;
     display: flex;
@@ -250,7 +250,7 @@ export default {
       margin: 5px 0;
       label {
         display: inline-block;
-        min-width: 14%;
+        width: 17%;
         // border: 1px solid black;
         text-align: right;
         font-size: 16px;
@@ -262,7 +262,7 @@ export default {
       input,
       textarea {
         display: inline-block;
-        width: 50%;
+        width: 60%;
         outline: 0;
         border-radius: 2%;
         border: 1px solid rgba(0, 0, 0, 0.14);
@@ -273,6 +273,7 @@ export default {
       }
       input[type="submit"] {
         width: 80px;
+        margin: 0 auto;
       }
     }
   }

@@ -15,7 +15,7 @@
           </div>
         </div>
       </div>
-      <div class="header-secondLine mainFrame">
+      <div class="header-secondLine mainFrame" ref="sticky" :class="{sticky: isSticky}">
         <div class="contentFrame">
           <div class="name">
             <span>filipe</span>
@@ -58,27 +58,58 @@ export default {
     title: "Filipe Neves",
     titleTemplate: "%s | Senior Developer",
     htmlAttrs: {
-      lang: 'en'
+      lang: "en"
     },
     meta: [
-      { vmid: "description", property: "description", content: "Filipe Neves is a senior developer within 10+ experience. His skillet includes: Backend (C#, PHP, Python, NodeJS, JavaScript), Frontend (Vue, React, jQuery), Database (MySQL, Microsoft SQL, MongoDB, Redis)."},
-      { vmid: "keywords", property: "keywords", content: "Filipe Neves, backend, fullstack, C#, PHP, Python, NodeJS, JavaScript" }
+      {
+        vmid: "description",
+        property: "description",
+        content:
+          "Filipe Neves is a senior developer within 10+ experience. His skillet includes: Backend (C#, PHP, Python, NodeJS, JavaScript), Frontend (Vue, React, jQuery), Database (MySQL, Microsoft SQL, MongoDB, Redis)."
+      },
+      {
+        vmid: "keywords",
+        property: "keywords",
+        content:
+          "Filipe Neves, backend, fullstack, C#, PHP, Python, NodeJS, JavaScript"
+      }
     ]
   },
   data() {
     return {
-      visitor: ""
+      visitor: "",
+      isSticky: false
     };
   },
   methods: {
     weChat() {
       alert("add me in wechat: filipenevespt");
+    },
+    stickyNavs() {
+      let navTop = this.$refs.sticky.offsetTop;
+      let scrolled =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      window.onscroll = () => {
+        if (scrolled > navTop) {
+          this.isSticky = true;
+        } else {
+          this.isSticky = false;
+        }
+      };
     }
     // greet() {
     // }
   },
   mounted() {
     // this.greet();
+
+    // setInterval(this.stickyNavs, 100);
+    this.$nextTick(function () {
+      window.addEventListener('scroll', this.stickyNavs)
+    })
+  },
+  destroyed(){
+
   }
 };
 </script>
@@ -103,6 +134,13 @@ body {
 
 .mainFrame {
   border: 1px solid #707070;
+  width: 100%;
+  z-index: 9999;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
   width: 100%;
 }
 
